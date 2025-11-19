@@ -45,7 +45,7 @@ export default function Hero() {
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 z-10">
           <div className={`transition-all duration-1000 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h2 className="text-sm md:text-base font-medium tracking-[0.3em] text-white/80 mb-4 uppercase">
-              Est. 2024
+              Est. 2025
             </h2>
           </div>
 
@@ -68,7 +68,7 @@ export default function Hero() {
         {/* Bottom Left CTA */}
         <div className={`absolute bottom-8 left-6 md:bottom-12 md:left-12 z-20 transition-all duration-1000 delay-1000 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <a
-            href="#contact"
+            href="/contact"
             className="group flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 md:px-8 md:py-4 rounded-full hover:bg-white hover:text-green-900 transition-all duration-300"
           >
             <span className="font-bold text-xs md:text-sm tracking-widest uppercase">Start Your Project</span>

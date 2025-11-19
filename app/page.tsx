@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import ContactUs from "@/components/ContactUs";
+
 import AboutUs from "@/components/AboutUs";
 import Services from "@/components/Services";
 import Navigation from "@/components/Navigation";
@@ -15,7 +15,7 @@ export default function Home() {
 
       <AboutUs />
 
-      <ContactUs />
+
 
       <Footer />
     </div>

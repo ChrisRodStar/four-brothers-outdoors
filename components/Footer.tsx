@@ -5,7 +5,7 @@ export default function Footer() {
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg className="relative block w-full h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                className="fill-white"></path>
+            className="fill-white"></path>
         </svg>
       </div>
 
@@ -18,7 +18,7 @@ export default function Footer() {
 
         {/* Animated Floating Orbs */}
         <div className="absolute top-20 left-[10%] w-64 h-64 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-[15%] w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 right-[15%] w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
 
         <div className="relative max-w-7xl mx-auto px-6 py-20">
           {/* Middle Section - Asymmetric Grid */}
@@ -78,7 +78,7 @@ export default function Footer() {
               {['Lawn Care', 'Design', 'Hardscaping', 'Irrigation', 'Seasonal', 'Tree Care'].map((service, idx) => (
                 <a
                   key={idx}
-                  href="#services"
+                  href="/#services"
                   className="group relative px-6 py-3 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 hover:bg-white/10 hover:border-green-400 transition-all duration-300"
                   style={{
                     transform: `translateY(${idx % 2 === 0 ? '-8px' : '8px'})`

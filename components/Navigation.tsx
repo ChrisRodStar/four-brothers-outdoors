@@ -26,9 +26,9 @@ export default function Navigation() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Services', href: '/#services' },
+    { name: 'About', href: '/#about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -48,7 +48,7 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <a href="#" className="group relative flex items-center gap-3 z-[60]">
+            <a href="/" className="group relative flex items-center gap-3 z-[60]">
               <div className={`relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-105 overflow-hidden ${(scrolled || mobileMenuOpen)
                 ? 'bg-white/10 backdrop-blur-md'
                 : 'bg-stone-900/5 backdrop-blur-md border border-stone-900/10'
