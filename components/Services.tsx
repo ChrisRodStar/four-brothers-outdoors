@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 export default function Services() {
   const [activeService, setActiveService] = useState(0);
@@ -50,10 +51,12 @@ export default function Services() {
               {/* Image Side */}
               <div className="w-full md:w-1/2 relative group">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-stone-100">
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.title}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    loading="lazy"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
@@ -83,7 +86,7 @@ export default function Services() {
                 </ul>
 
                 <div className="pt-4">
-                  <a href="#contact" className="inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-stone-900 hover:text-green-800 transition-colors group">
+                  <a href="/contact" className="inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-stone-900 hover:text-green-800 transition-colors group">
                     Inquire
                     <span className="block w-8 h-[1px] bg-stone-900 group-hover:w-12 group-hover:bg-green-800 transition-all"></span>
                   </a>

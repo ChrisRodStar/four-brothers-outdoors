@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -53,7 +54,7 @@ export default function Navigation() {
                 ? 'bg-white/10 backdrop-blur-md'
                 : 'bg-stone-900/5 backdrop-blur-md border border-stone-900/10'
                 }`}>
-                <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
+                <Image src="/logo.png" alt="Logo" width={40} height={40} className="object-cover" priority />
               </div>
               <div className="flex flex-col">
                 <span className={`text-xl font-black bg-clip-text text-transparent leading-none transition-all duration-300 ${(scrolled || mobileMenuOpen)

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
@@ -33,10 +34,12 @@ export default function Hero() {
       <div className="relative flex-1 rounded-[2rem] overflow-hidden group isolate">
         {/* Background Image with Parallax-like Scale */}
         <div className="absolute inset-0 bg-stone-900">
-          <img
+          <Image
             src="/hero-new.png"
             alt="Luxury Landscaping"
-            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] ease-out ${loaded ? 'scale-100' : 'scale-110'} group-hover:scale-105 opacity-90`}
+            fill
+            priority
+            className={`object-cover transition-transform duration-[2000ms] ease-out ${loaded ? 'scale-100' : 'scale-110'} group-hover:scale-105 opacity-90`}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/60" />
         </div>
