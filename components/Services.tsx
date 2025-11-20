@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 export default function Services() {
-  const [activeService, setActiveService] = useState(0);
+
 
   const services = [
     {
@@ -55,6 +54,7 @@ export default function Services() {
                     src={service.image}
                     alt={service.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     loading="lazy"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />

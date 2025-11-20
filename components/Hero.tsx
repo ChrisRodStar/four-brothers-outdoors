@@ -7,11 +7,14 @@ export default function Hero() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(true);
+    const timer = setTimeout(() => {
+      setLoaded(true);
+    }, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section className="relative h-screen w-full bg-[#F2F0E9] p-2 md:p-4 lg:p-6 flex flex-col overflow-hidden">
+    <section className="relative h-screen w-full bg-[#F2F0E9] px-2 pb-2 pt-24 md:px-4 md:pb-4 md:pt-28 lg:px-6 lg:pb-6 lg:pt-32 flex flex-col overflow-hidden">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
         .font-serif-custom {
@@ -19,16 +22,7 @@ export default function Hero() {
         }
       `}</style>
 
-      {/* Top Frame Meta */}
-      <div className="flex justify-between items-center px-2 pb-4 pt-20 md:pt-2">
-        <div className="hidden md:flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-800 rounded-full animate-pulse"></div>
-          <span className="text-xs font-bold tracking-[0.2em] text-stone-600 uppercase">Now Booking 2025</span>
-        </div>
-        <div className="hidden md:block">
-          <span className="text-xs font-bold tracking-[0.2em] text-stone-600 uppercase">North Carolina</span>
-        </div>
-      </div>
+
 
       {/* Main Image Container */}
       <div className="relative flex-1 rounded-[2rem] overflow-hidden group isolate">
@@ -82,13 +76,24 @@ export default function Hero() {
         {/* Bottom Right Services */}
         <div className={`absolute bottom-8 right-6 md:bottom-12 md:right-12 z-20 text-right hidden md:block transition-all duration-1000 delay-1000 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex flex-col gap-2">
-            {['Design', 'Hardscape', 'Maintenance'].map((service, i) => (
+            {['Design', 'Hardscape', 'Maintenance'].map((service) => (
               <div key={service} className="flex items-center justify-end gap-3 group cursor-pointer">
                 <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors">{service}</span>
                 <div className="w-1.5 h-1.5 rounded-full bg-white/30 group-hover:bg-white transition-colors"></div>
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Bottom Frame Meta */}
+      <div className="flex justify-between items-center px-2 pt-4 pb-2">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 bg-green-800 rounded-full animate-pulse"></div>
+          <span className="text-xs font-bold tracking-[0.2em] text-stone-600 uppercase">Now Booking 2025</span>
+        </div>
+        <div className="hidden md:block">
+          <span className="text-xs font-bold tracking-[0.2em] text-stone-600 uppercase">North Carolina</span>
         </div>
       </div>
     </section>

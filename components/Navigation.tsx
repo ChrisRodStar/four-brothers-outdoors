@@ -1,11 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+
 import Image from 'next/image';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,15 +18,13 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [mobileMenuOpen]);
 
   const navLinks = [
@@ -32,105 +33,67 @@ export default function Navigation() {
     { name: 'Contact', href: '/contact' },
   ];
 
+  // Always use dark text/elements because the nav sits on a light background (Hero top padding)
+  const textColor = 'text-stone-900';
+  const logoFilter = ''; // No filter, use original logo
+  const buttonStyle = 'bg-stone-900 text-white hover:bg-stone-800';
+
+  const finalNavClass = (scrolled || mobileMenuOpen)
+    ? 'bg-white/90 backdrop-blur-md shadow-sm py-4'
+    : 'bg-transparent py-6';
+
   return (
     <>
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
-          ? 'bg-white/80 backdrop-blur-md shadow-lg py-2'
-          : 'bg-transparent py-4'
-          }`}
-      >
-        {/* Gradient Border Bottom (only when scrolled) */}
-        <div
-          className={`absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-green-200 to-transparent transition-opacity duration-500 ${scrolled ? 'opacity-100' : 'opacity-0'
-            }`}
-        ></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${finalNavClass}`}>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <a href="/" className="group relative flex items-center gap-3 z-[60]">
-              <div className={`relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-105 overflow-hidden ${(scrolled || mobileMenuOpen)
-                ? 'bg-white/10 backdrop-blur-md'
-                : 'bg-stone-900/5 backdrop-blur-md border border-stone-900/10'
-                }`}>
-                <Image src="/logo.png" alt="Logo" width={40} height={40} className="object-cover" priority />
+            <Link href="/" className="flex items-center gap-3 group z-[60]">
+              <div className={`relative w-10 h-10 md:w-12 md:h-12 transition-all duration-500 group-hover:scale-105 ${logoFilter}`}>
+                <Image
+                  src="/logo.png"
+                  alt="Four Brothers Outdoors"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
-              <div className="flex flex-col">
-                <span className={`text-xl font-black bg-clip-text text-transparent leading-none transition-all duration-300 ${(scrolled || mobileMenuOpen)
-                  ? 'bg-gradient-to-r from-green-700 to-teal-700'
-                  : 'bg-gradient-to-r from-stone-800 via-stone-600 to-stone-800'
-                  }`}>
-                  Four Brothers
-                </span>
-                <span className={`text-xs font-bold tracking-widest uppercase transition-colors duration-300 ${(scrolled || mobileMenuOpen) ? 'text-gray-500' : 'text-stone-500'
-                  }`}>
-                  Outdoors
-                </span>
+              <div className={`flex flex-col transition-colors duration-500 ${textColor}`}>
+                <span className="font-serif text-lg md:text-xl font-bold leading-none">Four Brothers</span>
+                <span className="text-[0.6rem] md:text-[0.7rem] font-sans font-bold tracking-[0.2em] uppercase opacity-90">Outdoors</span>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-12">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-sm font-bold transition-colors relative group py-2 ${scrolled
-                    ? 'text-gray-600 hover:text-green-700'
-                    : 'text-stone-600 hover:text-stone-900'
-                    }`}
+                  className={`text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-70 ${textColor}`}
                 >
                   {link.name}
-                  <span className={`absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${scrolled ? 'bg-green-600' : 'bg-stone-800'
-                    }`}></span>
-                </a>
+                </Link>
               ))}
 
-              <a
-                href="tel:5551234567"
-                className={`px-6 py-2.5 rounded-full font-bold text-sm shadow-lg transition-all duration-300 flex items-center gap-2 ${scrolled
-                  ? 'bg-gradient-to-r from-green-600 to-teal-600 text-white shadow-green-900/20 hover:shadow-xl hover:shadow-green-900/30 hover:-translate-y-0.5'
-                  : 'bg-stone-900 text-white hover:bg-stone-800 hover:-translate-y-0.5'
-                  }`}
+              <Link
+                href="/contact"
+                className={`px-6 py-3 rounded-full text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 border border-transparent ${buttonStyle}`}
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                (555) 123-4567
-              </a>
+                Get a Quote
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              className={`md:hidden p-2 transition-colors z-[60] relative ${(scrolled || mobileMenuOpen) ? 'text-gray-600 hover:text-green-700' : 'text-stone-800 hover:text-stone-600'
-                }`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`md:hidden p-2 transition-colors duration-300 z-[60] ${mobileMenuOpen ? 'text-stone-900' : textColor}`}
               aria-label="Toggle menu"
             >
               <div className="w-6 h-6 flex flex-col justify-center gap-1.5">
-                <span
-                  className={`block w-full h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
-                    }`}
-                ></span>
-                <span
-                  className={`block w-full h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''
-                    }`}
-                ></span>
-                <span
-                  className={`block w-full h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
-                    }`}
-                ></span>
+                <span className={`block w-full h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                <span className={`block w-full h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                <span className={`block w-full h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
               </div>
             </button>
           </div>
@@ -138,63 +101,49 @@ export default function Navigation() {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-white/95 backdrop-blur-xl z-[55] md:hidden flex items-center justify-center">
-          {/* Close Button */}
-          <button
-            onClick={() => setMobileMenuOpen(false)}
-            className="absolute top-6 right-6 p-2 text-gray-600 hover:text-green-700 transition-colors z-[60]"
-            aria-label="Close menu"
-          >
-            <svg
-              className="w-8 h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+      <div
+        className={`fixed inset-0 z-[55] bg-[#F2F0E9] transition-transform duration-500 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+      >
+        {/* Close Button */}
+        <button
+          onClick={() => setMobileMenuOpen(false)}
+          className="absolute top-6 right-4 p-2 text-stone-900 hover:text-stone-600 transition-colors z-[60]"
+          aria-label="Close menu"
+        >
+          <div className="w-6 h-6 flex flex-col justify-center gap-1.5">
+            <span className="block w-full h-0.5 bg-current rotate-45 translate-y-2"></span>
+            <span className="block w-full h-0.5 bg-current opacity-0"></span>
+            <span className="block w-full h-0.5 bg-current -rotate-45 -translate-y-2"></span>
+          </div>
+        </button>
 
-          <div className="flex flex-col items-center gap-8 w-full px-8">
+        <div className="flex flex-col h-full pt-32 px-8 pb-8">
+          <div className="flex flex-col gap-8 items-center justify-center flex-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl font-black text-gray-800 hover:text-green-600 transition-colors"
+                className="font-serif text-4xl md:text-5xl text-stone-900 hover:text-stone-600 transition-colors"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <a
-              href="tel:5551234567"
+            <Link
+              href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-8 bg-gradient-to-r from-green-600 to-teal-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl flex items-center gap-3"
+              className="mt-8 px-8 py-4 bg-stone-900 text-white rounded-full text-sm font-bold tracking-[0.2em] uppercase hover:bg-stone-800 transition-colors"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-              Call Now
-            </a>
+              Get a Quote
+            </Link>
+          </div>
+
+          <div className="text-center text-stone-400 text-xs tracking-widest uppercase">
+            © 2025 Four Brothers Outdoors
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

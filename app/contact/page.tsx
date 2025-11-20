@@ -1,5 +1,11 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact Us | Four Brothers Outdoors",
+    description: "Get in touch with Four Brothers Outdoors for your landscaping needs. We serve North Carolina with professional design, hardscape, and maintenance services.",
+};
 
 export default function ContactPage() {
     return (
