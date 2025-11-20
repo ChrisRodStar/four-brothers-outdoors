@@ -51,7 +51,7 @@ export default function Navigation() {
             <Link href="/" className="flex items-center gap-3 group z-[60]">
               <div className={`relative w-10 h-10 md:w-12 md:h-12 transition-all duration-500 group-hover:scale-105 ${logoFilter}`}>
                 <Image
-                  src="/logo.png"
+                  src="/logo-new.png"
                   alt="Four Brothers Outdoors"
                   fill
                   className="object-contain"
