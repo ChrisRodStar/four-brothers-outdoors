@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/opengraph.png',
+        url: 'https://four-brothers-outdoors.vercel.app/opengraph.png',
         width: 1200,
         height: 630,
         alt: 'Four Brothers Outdoors Landscaping',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Four Brothers Outdoors | Professional Landscaping Services",
     description: "Transform your outdoor space with Four Brothers Outdoors. Expert landscaping, lawn care, and outdoor design services.",
-    images: ['/opengraph.png'],
+    images: ['https://four-brothers-outdoors.vercel.app/opengraph.png'],
   },
   robots: {
     index: true,
