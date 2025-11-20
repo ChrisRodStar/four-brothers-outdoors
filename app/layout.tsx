@@ -18,7 +18,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.fourbrothersoutdoors.com'),
+  metadataBase: new URL('https://four-brothers-outdoors.vercel.app'),
   title: {
     default: "Four Brothers Outdoors | Professional Landscaping Services",
     template: "%s | Four Brothers Outdoors"
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Four Brothers Outdoors | Professional Landscaping Services",
     description: "Transform your outdoor space with Four Brothers Outdoors. Expert landscaping, lawn care, and outdoor design services.",
-    url: 'https://www.fourbrothersoutdoors.com',
+    url: 'https://four-brothers-outdoors.vercel.app',
     siteName: 'Four Brothers Outdoors',
     locale: 'en_US',
     type: 'website',
@@ -87,7 +87,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LandscapingBusiness",
     "name": "Four Brothers Outdoors",
-    "image": "https://www.fourbrothersoutdoors.com/opengraph.png",
+    "image": "https://four-brothers-outdoors.vercel.app/opengraph.png",
     "description": "Professional landscaping, lawn care, and outdoor design services.",
     "address": {
       "@type": "PostalAddress",
@@ -101,7 +101,7 @@ export default function RootLayout({
       "latitude": 35.7796,
       "longitude": -78.6382
     },
-    "url": "https://www.fourbrothersoutdoors.com",
+    "url": "https://four-brothers-outdoors.vercel.app",
     "telephone": "+15551234567",
     "openingHoursSpecification": [
       {
